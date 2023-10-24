@@ -13,4 +13,15 @@ const GETPRODUCT = createAsyncThunk("GET_PRODUCT", async (loginData) => {
   }
 });
 
-export { GETPRODUCT };
+const SEARCHPRODUCT = createAsyncThunk("SEARCH_PRODUCT", async (query) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:8000/product/search?q=${query}`
+    );
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+});
+
+export { GETPRODUCT, SEARCHPRODUCT };
